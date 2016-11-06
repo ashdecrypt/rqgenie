@@ -38,11 +38,18 @@ class User extends Authenticatable
 
     }
 
-
+    public function hasrole($role_id)
+    {
+        if($this->roles()->where('id',$role_id)->first()){
+            return true;
+        }
+    }
+    
     public function attachrole($user_id,$role_id)
     {
         $user = User::find($user_id);
         $role = Role::find($role_id);
         $user->roles()->attach($role_id);
     }
+
 }
